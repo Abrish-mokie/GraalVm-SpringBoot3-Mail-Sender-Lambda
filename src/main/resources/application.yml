@@ -1,0 +1,23 @@
+spring:
+#  main:
+#    web-application-type: NONE
+  application:
+    name:
+      MailSender
+  mail:
+    host: email-smtp.us-east-2.amazonaws.com
+    port: 587
+    username: ${mailUsername}
+    password: ${mailPassword}
+    protocol: smtp
+    properties:
+      mail:
+        debug: true
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+#logging:
+#  level:
+#    root: debug

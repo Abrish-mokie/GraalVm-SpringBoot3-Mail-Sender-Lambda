@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd ${LAMBDA_TASK_ROOT:-.}
+
+./mail-sender-native -Dlogging.level.org.springframework=DEBUG -Dlogging.level.com.abrishmokie.JSMS.proxy.spring=DEBUG -Dlogging.level.root=DEBUG

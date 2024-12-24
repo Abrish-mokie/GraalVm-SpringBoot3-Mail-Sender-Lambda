@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless Java Container GraalVM
+Parameters:
+  mailUsername:
+    Type: String
+  mailPassword:
+    Type: String
+Resources:
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Auth:
+        ApiKeyRequired: true # sets for all methods
+
+  ServerlessWebNativeFunctionMailSender:
+    Type: AWS::Serverless::Function
+    Properties:
+      MemorySize: 200
+      FunctionName: mail-sender-native
+      Timeout: 15
+      CodeUri: ./target/mail-sender-native-0.0.1-SNAPSHOT-native-zip.zip
+      Handler: NOP
+      Runtime: provided.al2023
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          mailUsername: !Ref mailUsername
+          mailPassword: !Ref mailPassword
+      Events:
+        ApiKey:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /send-email
+            Method: POST
+            Auth:
+              ApiKeyRequired: true
+
+Globals:
+  Api:
+    EndpointConfiguration: REGIONAL
+
+Outputs:
+  ServerlessWebNativeApiMailSender:
+    Description: URL for application
+    Value: !Sub 'https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
+    Export:
+      Name: ServerlessWebNativeApiMailSender
