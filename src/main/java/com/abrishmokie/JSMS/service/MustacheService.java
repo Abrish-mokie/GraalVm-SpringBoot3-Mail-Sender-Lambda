@@ -3,6 +3,7 @@ package com.abrishmokie.JSMS.service;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class MustacheService {
 
     private final MustacheFactory mustacheFactory;
 
-    public MustacheService() {
-        this.mustacheFactory = new DefaultMustacheFactory();
-    }
+//    public MustacheService() {
+//        this.mustacheFactory = new DefaultMustacheFactory();
+//    }
 
     // Method to render Mustache template
     public String renderTemplate(String templateName, Map<String, Object> context) throws IOException {

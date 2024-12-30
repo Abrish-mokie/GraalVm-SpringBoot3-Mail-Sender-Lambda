@@ -37,15 +37,15 @@
           color: #cccccc;
           margin-bottom: 20px;
         }
-        .email-content .token-button {
+        .email-content .code-box {
           display: inline-block;
-          padding: 10px 20px;
-          font-size: 16px;
-          color: #ffffff;
+          padding: 15px 30px;
+          font-size: 24px;
+          font-weight: bold;
+          color: #ffcc00;
           background-color: #2c3333;
-          text-decoration: none;
           border-radius: 5px;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
         }
         .email-footer p {
           font-size: 12px;
@@ -58,12 +58,12 @@
 <div class="email-container">
     <div class="email-header">
         <h1>Auth</h1>
-        <p>Welcome Back</p>
+        <p>Two-Factor Authentication</p>
     </div>
     <div class="email-content">
-        <p>Hi there! To {{purpose_1}}, please click the link below</p>
-        <p class="token-button">Click <a href={{tokenLink}}>here</a> to{{purpose_2}}l.</p>
-        <p>If you did not request this, please ignore this email.</p>
+        <p>Hi there! Use the code below to complete your login process:</p>
+        <div class="code-box">{{verificationCode}}</div>
+        <p>This code will expire in {{expiryTime}} minutes. If you did not request this, please ignore this email.</p>
     </div>
     <div class="email-footer">
         <p>© 2024 Auth App. All rights reserved.</p>

@@ -3,7 +3,7 @@ package com.abrishmokie.JSMS.DTO;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-public record EmailVerificationBody (
+public record VerificationBody (
         @NotNull(message = "fromEmail Cannot be null")
         @NotEmpty(message = "fromEmail Cannot be empty")
         String fromEmail,

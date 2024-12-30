@@ -34,7 +34,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyApi
-            Path: /send-email
+            Path: /{proxy+}
             Method: POST
             Auth:
               ApiKeyRequired: true
